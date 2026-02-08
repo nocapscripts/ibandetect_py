@@ -122,19 +122,28 @@ def extract_bank_from_iban(iban: str):
     return country, bank_name
 
 def MOTD():
-    print(r"""    ________  ___    _   ______  ______________________________
+    cyan = "\033[96m"
+    blue = "\033[94m"
+    bold = "\033[1m"
+    reset = "\033[0m"
+
+    print(f"""{bold}{cyan}
+    ________  ___    _   ______  ______________________________
    /  _/ __ )/   |  / | / / __ \/ ____/_  __/ ____/ ____/_  __/
    / // __  / /| | /  |/ / / / / __/   / / / __/ / /     / /   
  _/ // /_/ / ___ |/ /|  / /_/ / /___  / / / /___/ /___  / /    
 /___/_____/_/  |_/_/ |_/_____/_____/ /_/ /_____/\____/ /_/     
-                                                               """)
+{blue}                                                              
+Welcome to the system.
+{reset}""")
+
 
 if __name__ == "__main__":
 
     while True:
         MOTD()
         user_input = input("Enter IBAN: ").strip()
-        if user_input.lower() == 'exit' or 'q':
+        if user_input.lower() in ['exit', 'q']:
             print("Exit")
             break
         if validate_iban(user_input):
